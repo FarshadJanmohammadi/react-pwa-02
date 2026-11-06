@@ -56,7 +56,19 @@ export default defineConfig({
         {
           urlPattern: /^https:\/\/dummyjson\.com\/products.*$/i,
 
-          handler: "NetworkFirst"
+          handler: "NetworkFirst",
+          options: {
+              cacheName: "products-api-cache",
+
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60,
+              },
+
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
         }
       ]
     }
