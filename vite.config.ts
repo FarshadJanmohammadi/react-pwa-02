@@ -6,8 +6,9 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [react(),
   VitePWA({
-    registerType: "prompt",
+    registerType: "autoUpdate",
     includeAssets: ["favicon.ico"],
+    injectRegister: "auto",
     manifest: {
       "name": "My PWA App",
       "short_name": "App",
