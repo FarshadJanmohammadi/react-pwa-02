@@ -26,7 +26,7 @@ const App = () => {
     <div>
       {products.map(({id,title,description,images})=>(
         <div key={id}>
-          <img src={images[0]} />
+          <img width={100} height={100} src={images[0]} />
           <h2>{title}</h2>
           <p>{description}</p>
         </div>
