@@ -51,7 +51,7 @@ export default defineConfig({
       ]
     },
     workbox: {
-      globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+      globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"],
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/dummyjson\.com\/products.*$/i,
