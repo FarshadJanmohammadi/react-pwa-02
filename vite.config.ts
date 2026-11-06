@@ -54,7 +54,8 @@ export default defineConfig({
       globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
       runtimeCaching: [
         {
-          urlPattern: /^https:\/\/dummyjson\.com$/i,
+          urlPattern: /^https:\/\/dummyjson\.com\/products.*$/i,
+
           handler: "NetworkFirst"
         }
       ]
