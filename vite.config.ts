@@ -53,14 +53,51 @@ export default defineConfig({
     workbox: {
       globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
       runtimeCaching: [
+        // API responses
         {
-          urlPattern: /^https:\/\/dummyjson\.com\/products.*$/i,
+          urlPattern: ({ url, request }) =>
+            url.origin === 'https://dummyjson.com' &&
+            url.pathname.startsWith('/products') &&
+            request.method === 'GET',
 
-          handler: "NetworkFirst",
+          handler: 'NetworkFirst',
+
           options: {
-              cacheName: "products-api-cache",
+            cacheName: 'dummyjson-api-cache',
+
+            networkTimeoutSeconds: 5,
+
+            expiration: {
+              maxEntries: 100,
+              maxAgeSeconds: 60 * 60 * 24,
             },
-        }
+
+            cacheableResponse: {
+              statuses: [200],
+            },
+          },
+        },
+
+        // Product images
+        {
+          urlPattern: ({ request }) =>
+            request.destination === 'image',
+
+          handler: 'CacheFirst',
+
+          options: {
+            cacheName: 'product-image-cache',
+
+            expiration: {
+              maxEntries: 200,
+              maxAgeSeconds: 60 * 60 * 24 * 30,
+            },
+
+            cacheableResponse: {
+              statuses: [0, 200],
+            },
+          },
+        },
       ]
     }
   })
