@@ -51,7 +51,7 @@ export default defineConfig({
       ]
     },
     workbox: {
-      globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"],
+      globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/dummyjson\.com\/products.*$/i,
@@ -59,15 +59,6 @@ export default defineConfig({
           handler: "NetworkFirst",
           options: {
               cacheName: "products-api-cache",
-
-              expiration: {
-                maxEntries: 20,
-                maxAgeSeconds: 60 * 60,
-              },
-
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
             },
         }
       ]
